@@ -20,14 +20,14 @@
                             <tr>
                                 <td>{{ $priority->name }}</td>
                                 <td style="width: 100px;">
-                                    <a class="btn btn-success" href="{{ route('priorities.edit', $priority->id) }}" >Redaguoti</a>
+                                    <a class="btn btn-warning" href="{{ route('priorities.edit', $priority->id) }}" >Redaguoti</a>
                                 </td>
 
                                 <td style="width: 100px;">
                                     <form method="POST" action="{{ route('priorities.destroy', $priority->id) }}">
                                         @csrf
                                         @method("DELETE")
-                                        <button class="btn btn-danger">Ištrinti</button>
+                                        <button class="btn btn-danger" onclick="return confirm('Really want to delete?');">Ištrinti</button>
                                     </form>
                                 </td>
                             </tr>

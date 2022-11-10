@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Priority;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,7 +16,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+
+        return view('tasks.index', [
+            'tasks'=>$tasks
+        ]);
     }
 
     /**
@@ -24,7 +30,12 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $priorities = Priority::all();
+        $users = User::all();
+        return view('tasks.create',[
+            'priorities' => $priorities,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -35,7 +46,20 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->status = $request->status;
+        $task->priority_id = $request->priority_id;
+        $task->user_id = $request->user_id;
+
+    /* echo "<pre>";
+            print_r($task);
+        echo "</pre>"; */
+        
+        $task->save();
+
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -57,7 +81,12 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $priorities = Priority::all();
+        $users = User::all();
+        return view("tasks.edit", [
+            'task' => $task,
+            'priorities' => $priorities,
+            'users' => $users]);
     }
 
     /**
@@ -69,7 +98,14 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->status = $request->status;
+        $task->priority_id = $request->priority_id;
+        $task->user_id = $request->user_id;
+        $task->save();
+
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -80,6 +116,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('tasks.index');
     }
 }

@@ -36,6 +36,12 @@
                         <li class="nav-item">
                             <a href="{{ route('priorities.create') }}" class="nav-link">Naujas prioritetas</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tasks.index') }}" class="nav-link">Užduotys</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tasks.create') }}" class="nav-link">Nauja užduotis</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
