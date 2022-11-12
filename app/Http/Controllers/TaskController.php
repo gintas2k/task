@@ -28,12 +28,20 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::all();
+        $search=$request->session()->get('task_search',null);
+        $filter_priority=$request->session()->get('task_filter_priority',null);
+
+        $tasks=Task::search($search)->FromPriority($filter_priority)->with('priority')->get();
+        //$tasks = Task::all();
+        $priorities = Priority::all();
 
         return view('tasks.index', [
-            'tasks'=>$tasks
+            'tasks'=>$tasks,
+            'search'=>$search,
+            'filter_priority'=>$filter_priority,
+            'priorities'=>$priorities
         ]);
     }
 
@@ -137,4 +145,21 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('tasks.index');
     }
+
+    public function search(Request $request){
+        $request->session()->put('task_search',$request->search);
+        return redirect()->route('tasks.index');
+    }
+
+    public function reset(Request $request){
+        $request->session()->put('task_search', null);
+        $request->session()->put('task_filter_priority', null);
+        return redirect()->route('tasks.index');
+    }
+
+    public function filter(Request $request){
+        $request->session()->put('task_filter_priority',$request->filter_priority);
+        return redirect()->route('tasks.index');
+    }
+
 }

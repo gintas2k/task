@@ -16,4 +16,26 @@ class Task extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return void
+     */
+    public function scopeSearch($query, $search){
+        if ($search!==null){
+            $query
+                ->where('name','like',"%$search%")
+                ->orWhere('description','like',"%$search%");
+        }
+        return $query;
+    }
+
+    public function scopeFromPriority($query, $priorityId){
+        if ($priorityId!==null){
+            $query->where('priority_id',$priorityId);
+        }
+        return $query;
+    }
+
+
 }
