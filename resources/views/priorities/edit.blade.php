@@ -7,12 +7,15 @@
                 <div class="card">
                     <div class="card-header">Prioriteto redagavimas</div>
                     <div class="card-body">
+
+                        @include('tasks.error')
+                        
                         <form method="POST" action="{{ route('priorities.update', $priority->id) }}">
                             @csrf
                             @method("PUT")
                             <div class="mb-3">
                                 <label class="form-label">Pavadinimas</label>
-                                <input type="text" class="form-control" name="name" value="{{ $priority->name }}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $priority->name }}">
                             </div>
                             
                             <button class="btn btn-success">Išsaugoti</button>

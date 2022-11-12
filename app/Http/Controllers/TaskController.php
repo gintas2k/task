@@ -9,6 +9,20 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    private  $validationRules=[
+        'name'=>['required', 'min:3', 'max:64'],
+        'description'=>['max:512']
+    ];
+
+    private $validationMessages=[
+        'name.required'=>'Užduoties <b>pavadinimas</b> yra privalomas ',
+        'name.min'=>'<b>Pavadinimas</b> turi būti ne trumpesnis nei 3 simboliai',
+        'name.max'=>'<b>Pavadinimas</b> turi būti ne ilgesnis nei 64 simboliai',
+        'description.max'=>'<b>Aprašymas</b> turi būti ne ilgesnis nei 512 simbolių'
+    ];
+
+
     /**
      * Display a listing of the resource.
      *
@@ -46,6 +60,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->validationRules, $this->validationMessages);
+
         $task = new Task();
         $task->name = $request->name;
         $task->description = $request->description;
@@ -98,6 +114,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        $request->validate($this->validationRules, $this->validationMessages);
+
         $task->name = $request->name;
         $task->description = $request->description;
         $task->status = $request->status;

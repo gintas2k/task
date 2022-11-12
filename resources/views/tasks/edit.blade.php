@@ -7,6 +7,9 @@
                 <div class="card">
                     <div class="card-header">Užduoties redagavimas</div>
                     <div class="card-body">
+
+                        @include('tasks.error')
+                        
                         <form method="POST" action="{{ route('tasks.update', $task->id) }}">
                             @csrf
                             @method("PUT")
