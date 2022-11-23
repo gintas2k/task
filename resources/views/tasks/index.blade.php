@@ -5,16 +5,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Užduočių sąrašas</div>
+                <div class="card-header">{{ __('tasks.tasks_list') }}</div>
                 <div class="card-body">
                     <form action="{{ route('tasks.search') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="search" placeholder="Užduoties arba jos aprašymo paieška" value="{{ $search }}">
+                                <input type="text" class="form-control" name="search" placeholder="{{ __('tasks.search_placeholder') }}" value="{{ $search }}">
                             </div>
                             <div class="col-md-1">
-                                <button type="submit" class="btn btn-success">Ieškoti</button>
+                                <button type="submit" class="btn btn-success">{{ __('tasks.search') }}</button>
                             </div>
                             <div class="col-md-1">
 
@@ -34,10 +34,10 @@
                                 </select>
                             </div>
                             <div class="col-md-1">
-                                <button type="submit" class="btn btn-success">Filtruoti</button>
+                                <button type="submit" class="btn btn-success">{{ __('tasks.filter') }}</button>
                             </div>
                             <div class="col-md-1">
-                                <a href="{{ route('tasks.search.reset') }}" class="btn btn-warning">Išvalyti</a>
+                                <a href="{{ route('tasks.search.reset') }}" class="btn btn-warning">{{ __('tasks.clear') }}</a>
                             </div>
                         </div>
                     </form>
@@ -45,11 +45,11 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Pavadinimas</th>
-                            <th>Aprašymas</th>
-                            <th>Statusas</th>
-                            <th>Prioritetas</th>
-                            <th>Vartotojas</th>
+                            <th>{{ __('tasks.name') }}</th>
+                            <th>{{ __('tasks.description') }}</th>
+                            <th>{{ __('tasks.status') }}</th>
+                            <th>{{ __('tasks.priority') }}</th>
+                            <th>{{ __('tasks.user') }}</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -62,30 +62,30 @@
                                 <td>
                                     @switch($task->status)
                                         @case(0)
-                                            sukurta
+                                        {{ __('tasks.created') }}
                                         @break
                                         @case(1)
-                                            vykdoma
+                                        {{ __('tasks.doing') }}
                                         @break
                                         @case(2)
-                                            įvykdyta
+                                        {{ __('tasks.done') }}
                                         @break
                                         @case(3)
-                                            atšaukta
+                                        {{ __('tasks.canceled') }}
                                         @break
                                     @endswitch
                                 </td>
                                 <td>{{ $task->priority->name }}</td>
                                 <td>{{ $task->user->name }}</td>
                                 <td style="width: 100px;">
-                                    <a class="btn btn-warning" href="{{ route('tasks.edit', $task->id) }}" >Redaguoti</a>
+                                    <a class="btn btn-warning" href="{{ route('tasks.edit', $task->id) }}" >{{ __('tasks.edit') }}</a>
                                 </td>
 
                                 <td style="width: 100px;">
                                     <form method="POST" action="{{ route('tasks.destroy', $task->id) }}">
                                         @csrf
                                         @method("DELETE")
-                                        <button class="btn btn-danger" onclick="return confirm('Really want to delete?');">Ištrinti</button>
+                                        <button class="btn btn-danger" onclick="return confirm('Really want to delete?');">{{ __('tasks.delete') }}</button>
                                     </form>
                                 </td>
                             </tr>

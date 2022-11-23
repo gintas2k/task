@@ -30,21 +30,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @auth
+                            @if (Auth::user()->type === 1)
+                                <li class="nav-item">
+                                    <a href="{{ route('priorities.index') }}" class="nav-link">{{ __('Priorities') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('priorities.create') }}" class="nav-link">{{ __('New priority') }}</a>
+                                </li>
+                            @endif
                         <li class="nav-item">
-                            <a href="{{ route('priorities.index') }}" class="nav-link">Prioritetai</a>
+                            <a href="{{ route('tasks.index') }}" class="nav-link">{{ __('Tasks') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('priorities.create') }}" class="nav-link">Naujas prioritetas</a>
+                            <a href="{{ route('tasks.create') }}" class="nav-link">{{ __('New task') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('tasks.index') }}" class="nav-link">Užduotys</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('tasks.create') }}" class="nav-link">Nauja užduotis</a>
-                        </li>
+                        @endauth
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
+                    <div class="float-end">
+                        <a href="{{ route('setLanguage','lt') }}" class="{{ App::getLocale()=='lt'?'fw-bold':'' }}">LT</a>
+                        <a href="{{ route('setLanguage','en') }}" class="{{ App::getLocale()=='en'?'fw-bold':'' }}">EN</a>
+                    </div>
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest

@@ -1,0 +1,23 @@
+<?php 
+return [
+    'tasks_list' => 'Tasks',
+    'name' => 'Name',
+    'description' => 'Description',
+    'status' => 'Status',
+    'priority' => 'Priority',
+    'user' => 'User',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'search_placeholder' => 'Task or description search',
+    'search' => 'Search',
+    'filter' => 'Filter',
+    'clear' => 'Clear',
+    'new_task' => 'New task',
+    'add' => 'Add',
+    'edit_task' => 'Edit task',
+    'save' => 'Save',
+    'created' => 'created',
+    'doing' => 'doing',
+    'done' => 'done',
+    'canceled' => 'canceled',
+];

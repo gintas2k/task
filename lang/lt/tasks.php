@@ -1,0 +1,23 @@
+<?php 
+return [
+    'tasks_list' => 'Užduotys',
+    'name' => 'Pavadinimas',
+    'description' => 'Aprašymas',
+    'status' => 'Statusas',
+    'priority' => 'Prioritetas',
+    'user' => 'Vartotojas',
+    'edit' => 'Redaguoti',
+    'delete' => 'Ištrinti',
+    'search_placeholder' => 'Užduoties arba jos aprašymo paieška',
+    'search' => 'Ieškoti',
+    'filter' => 'Filtruoti',
+    'clear' => 'Išvalyti',
+    'new_task' => 'Nauja užduotis',
+    'add' => 'Pridėti',
+    'edit_task' => 'Užduoties redagavimas',
+    'save' => 'Išsaugoti',
+    'created' => 'sukurta',
+    'doing' => 'vykdoma',
+    'done' => 'įvykdyta',
+    'canceled' => 'atšaukta',
+];

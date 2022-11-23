@@ -6,6 +6,7 @@ use App\Models\Priority;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class TaskController extends Controller
 {
